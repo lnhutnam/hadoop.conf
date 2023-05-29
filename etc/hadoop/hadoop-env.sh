@@ -51,12 +51,10 @@
 
 # The java implementation to use. By default, this environment
 # variable is REQUIRED on ALL platforms except OS X!
-# export JAVA_HOME=
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk
 
 # Location of Hadoop.  By default, Hadoop will attempt to determine
 # this location based upon its execution path.
-# export HADOOP_HOME=
 export HADOOP_HOME="/home/lnhutnam/opt/hadoop-3.3.4"
 
 # Location of Hadoop's configuration information.  i.e., where this
@@ -67,7 +65,6 @@ export HADOOP_HOME="/home/lnhutnam/opt/hadoop-3.3.4"
 # /etc/profile.d or equivalent.  Some options (such as
 # --config) may react strangely otherwise.
 #
-# export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 export HADOOP_CONF_DIR=${HADOOP_HOME}/etc/hadoop
 
 # The maximum amount of heap to use (Java -Xmx).  If no unit
@@ -160,8 +157,6 @@ export HADOOP_OS_TYPE=${HADOOP_OS_TYPE:-$(uname -s)}
 # Options to pass to SSH when one of the "log into a host and
 # start/stop daemons" scripts is executed
 # export HADOOP_SSH_OPTS="-o BatchMode=yes -o StrictHostKeyChecking=no -o ConnectTimeout=10s"
-export HADOOP_SSH_OPTS="-p 22"
-
 
 # The built-in ssh handler will limit itself to 10 simultaneous connections.
 # For pdsh users, this sets the fanout size ( -f )
@@ -433,6 +428,7 @@ export HADOOP_SSH_OPTS="-p 22"
 # By default, Hadoop uses jsvc which needs to know to launch a
 # server jvm.
 # export HADOOP_REGISTRYDNS_SECURE_EXTRA_OPTS="-jvm server"
+
 export HDFS_NAMENODE_USER=root
 export HDFS_DATANODE_USER=root
 export HDFS_SECONDARYNAMENODE_USER=root
