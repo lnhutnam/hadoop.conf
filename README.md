@@ -65,15 +65,13 @@ export HADOOP_OPTS="-Djava.library.path=$HADOOP_HOME/lib/native"
 ## Configuration for core-site.xml
 
 ```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
-<property>
-  <name>hadoop.tmp.dir</name>
-  <value>/home/lnhutnam/opt/hadoop-3.3.4/tmpdata</value>
-</property>
-<property>
-  <name>fs.default.name</name>
-  <value>hdfs://127.0.0.1:9000</value>
-</property>
+    <property>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
+    </property>
 </configuration>
 ```
 
@@ -92,45 +90,65 @@ export YARN_RESOURCEMANAGER_USER=root
 export YARN_NODEMANAGER_USER=root
 ```
 
+## Configuration for hdfs-site.xml
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+      <name>dfs.permissions</name>
+      <value>false</value>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <property>
+      <name>dfs.namenode.http-address</name>
+      <value>localhost:50070</value>
+    </property>
+</configuration>
+```
+
 ## Configuration for mapred-site.xml
 
 ```xml
-<configuration> 
-  <property> 
-    <name>mapreduce.framework.name</name> 
-    <value>yarn</value> 
-  </property> 
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>mapreduce.framework.name</name>
+        <value>yarn</value>
+    </property>
+    <property>
+        <name>mapreduce.application.classpath</name>
+        <value>$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/*:$HADOOP_MAPRED_HOME/share/hadoop/mapreduce/lib/*</value>
+    </property>
 </configuration>
 ```
 
 ## Configuration for yarn-site.xml
 
 ```xml
+<?xml version="1.0"?>
 <configuration>
-  <property>
-    <name>yarn.nodemanager.aux-services</name>
-    <value>mapreduce_shuffle</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.aux-services.mapreduce.shuffle.class</name>
-    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
-  </property>
-  <property>
-    <name>yarn.resourcemanager.hostname</name>
-    <value>127.0.0.1</value>
-  </property>
-  <property>
-    <name>yarn.acl.enable</name>
-    <value>0</value>
-  </property>
-  <property>
-    <name>yarn.nodemanager.env-whitelist</name>   
-    <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PERPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_MAPRED_HOME</value>
-  </property>
+    <property>
+        <name>yarn.nodemanager.aux-services</name>
+        <value>mapreduce_shuffle</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.env-whitelist</name>
+        <value>JAVA_HOME,HADOOP_COMMON_HOME,HADOOP_HDFS_HOME,HADOOP_CONF_DIR,CLASSPATH_PREPEND_DISTCACHE,HADOOP_YARN_HOME,HADOOP_HOME,PATH,LANG,TZ,HADOOP_MAPRED_HOME</value>
+    </property>
 </configuration>
 ```
 
 ## Test
+
+Check your namenode at [http://localhost:50070/dfshealth.html#tab-overview](http://localhost:50070/dfshealth.html#tab-overview)
+
+Check your resource manager at [http://localhost:8088/cluster](http://localhost:8088/cluster)
 
 ```bash
 hdfs namenode -format
