@@ -2,15 +2,7 @@
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
     <property>
-      <name>dfs.permissions</name>
-      <value>false</value>
-    </property>
-    <property>
-        <name>dfs.replication</name>
-        <value>1</value>
-    </property>
-    <property>
-      <name>dfs.namenode.http-address</name>
-      <value>localhost:50070</value>
+        <name>fs.defaultFS</name>
+        <value>hdfs://localhost:9000</value>
     </property>
 </configuration>
