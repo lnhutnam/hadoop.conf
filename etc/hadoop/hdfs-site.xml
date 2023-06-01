@@ -17,20 +17,16 @@
 <!-- Put site-specific property overrides in this file. -->
 
 <configuration>
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/lnhutnam/opt/hadoop-3.3.4/dfsdata/namenode</value>
-</property>
-<property>
-  <name>dfs.data.dir</name>
-  <value>/home/lnhutnam/opt/hadoop-3.3.4/dfsdata/datanode</value>
-</property>
-<property>
-  <name>dfs.replication</name>
-  <value>1</value>
-</property>
-<property>
-  <name>dfs.namenode.http-address</name>
-  <value>localhost:50070</value>
-</property>
+    <property>
+      <name>dfs.permissions</name>
+      <value>false</value>
+    </property>
+    <property>
+        <name>dfs.replication</name>
+        <value>1</value>
+    </property>
+    <property>
+      <name>dfs.namenode.http-address</name>
+      <value>localhost:50070</value>
+    </property>
 </configuration>
